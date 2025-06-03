@@ -20,8 +20,8 @@ const Login = () => {
     try {
       setIsLoading(true);
       await mutateAsync({ username, password });
+      navigate("/landing")
       localStorage.setItem("isLoggedIn", "true");
-      isLoggedIn ? navigate("/landing"): ''
     } catch (err) {
       setIsLoading(false);
       setError("Invalid username or password");
