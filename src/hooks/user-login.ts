@@ -43,6 +43,7 @@ export const userRegister = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "allow": "*"
           },
           body: JSON.stringify({
             username: username,
@@ -51,11 +52,10 @@ export const userRegister = () => {
           }),
         }
       );
-      if (!response.ok) {
-        throw new Error("Failed to user credentials");
-      }
-
-      return response.ok;
+      // if (!response.ok) {
+      //   throw new Error("Failed to user credentials");
+      // }
+      return response;
     },
   });
 };

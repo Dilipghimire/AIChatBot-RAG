@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./register.scss";
 import { userRegister } from "../hooks/user-login";
 import * as Yup from "yup";
-import Loading from "../../src/components/ui/Loading"
+import Loading from "../../src/components/ui/Loading";
 
 const validationSchema = Yup.object({
   username: Yup.string()
@@ -32,9 +32,14 @@ function Register() {
     email: "",
     password: "",
   });
-
   const navigate = useNavigate();
-  const { mutateAsync } = userRegister();
+  const { mutateAsync, data } = userRegister();
+
+  useEffect(() => {
+    if (data && data.ok) {
+      navigate("/login");
+    }
+  }, [data]);
 
   const handleRegister = async () => {
     try {
@@ -51,7 +56,6 @@ function Register() {
       } finally {
         setIsLoading(false);
       }
-      navigate("/login");
     } catch (validationError: any) {
       const formattedErrors: any = {};
       validationError.inner.forEach((err: any) => {
@@ -105,6 +109,10 @@ function Register() {
           <button onClick={handleRegister} className="register-button">
             Register
           </button>
+
+          {data?.status == 400 && (
+            <p className="register-error">user already exists</p>
+          )}
 
           <Link to="/login" className="register-link">
             Already have an account? Log in here

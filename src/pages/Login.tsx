@@ -3,12 +3,15 @@ import { useNavigate, Link } from "react-router-dom";
 import "./login.scss";
 import { userLogin } from "../hooks/user-login";
 import Loading from "../../src/components/ui/Loading"
+import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const { isLoggedIn } = useAuth();
+
 
   const navigate = useNavigate();
   const { mutateAsync } = userLogin();
@@ -17,8 +20,8 @@ const Login = () => {
     try {
       setIsLoading(true);
       await mutateAsync({ username, password });
-      navigate("/landing");
       localStorage.setItem("isLoggedIn", "true");
+      isLoggedIn ? navigate("/landing"): ''
     } catch (err) {
       setIsLoading(false);
       setError("Invalid username or password");
