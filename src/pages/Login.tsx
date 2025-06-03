@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import "./login.scss";
 import { userLogin } from "../hooks/user-login";
 import Loading from "../../src/components/ui/Loading"
-import { useAuth } from "../context/AuthContext";
 
 const Login = () => {
   const [username, setUsername] = useState("");
