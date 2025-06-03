@@ -10,7 +10,6 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const { isLoggedIn } = useAuth();
 
 
   const navigate = useNavigate();
