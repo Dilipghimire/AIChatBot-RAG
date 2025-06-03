@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./register.scss";
 import { userRegister } from "../hooks/user-login";
 import * as Yup from "yup";
+import Loading from "../components/ui/loading";
 
 const validationSchema = Yup.object({
   username: Yup.string()
@@ -25,6 +26,7 @@ function Register() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({
     username: "",
     email: "",
@@ -40,7 +42,15 @@ function Register() {
         { username, email, password },
         { abortEarly: false }
       );
-      await mutateAsync({ username, email, password });
+      try {
+        setIsLoading(true);
+        await mutateAsync({ username, email, password });
+      } catch (e) {
+        setIsLoading(false);
+        console.log("unable to create an account", e);
+      } finally {
+        setIsLoading(false);
+      }
       navigate("/login");
     } catch (validationError: any) {
       const formattedErrors: any = {};
@@ -52,49 +62,56 @@ function Register() {
   };
 
   return (
-    <div className="register-page">
-      <div className="register-box">
-        <p className="register-description">Create your account</p>
+    <>
+      {isLoading && <Loading />}
+      <div className="register-page">
+        <div className="register-box">
+          <p className="register-description">Create your account</p>
+          <input
+            className="register-input"
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            onFocus={() => setErrors((prev) => ({ ...prev, username: "" }))}
+          />
 
-        <input
-          className="register-input"
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          onFocus={() => setErrors((prev) => ({ ...prev, username: "" }))}
-        />
-        {errors.username && <p className="register-error">{errors.username}</p>}
+          {errors.username && (
+            <p className="register-error">{errors.username}</p>
+          )}
 
-        <input
-          className="register-input"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onFocus={() => setErrors((prev) => ({ ...prev, email: "" }))}
-        />
-        {errors.email && <p className="register-error">{errors.email}</p>}
+          <input
+            className="register-input"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => setErrors((prev) => ({ ...prev, email: "" }))}
+          />
+          {errors.email && <p className="register-error">{errors.email}</p>}
 
-        <input
-          className="register-input"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onFocus={() => setErrors((prev) => ({ ...prev, password: "" }))}
-        />
-        {errors.password && <p className="register-error">{errors.password}</p>}
+          <input
+            className="register-input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            onFocus={() => setErrors((prev) => ({ ...prev, password: "" }))}
+          />
+          {errors.password && (
+            <p className="register-error">{errors.password}</p>
+          )}
 
-        <button onClick={handleRegister} className="register-button">
-          Register
-        </button>
+          <button onClick={handleRegister} className="register-button">
+            Register
+          </button>
 
-        <Link to="/login" className="register-link">
-          Already have an account? Log in here
-        </Link>
+          <Link to="/login" className="register-link">
+            Already have an account? Log in here
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -14,8 +14,9 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       await mutateAsync({ username, password });
-      localStorage.setItem("isLoggedIn", "true");
       navigate("/landing");
+      localStorage.setItem("isLoggedIn", "true");
+
     } catch (err) {
       setError("Invalid username or password");
     }

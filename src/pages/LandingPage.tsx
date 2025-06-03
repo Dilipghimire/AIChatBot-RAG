@@ -17,7 +17,7 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <label className="dropdown-label" htmlFor="dropdown">
-        Choose a topic below
+        Choose a topic below.
       </label>
       <select
         id="dropdown"

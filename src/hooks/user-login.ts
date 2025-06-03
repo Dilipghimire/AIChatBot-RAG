@@ -18,6 +18,7 @@ export const userLogin = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "allow": "*"
         },
         body: JSON.stringify({
           username: username,
@@ -36,6 +37,8 @@ export const userLogin = () => {
 export const userRegister = () => {
   return useMutation({
     mutationFn: async ({ username, email, password }: UserRegister) => {
+      console.log('createUser', username, email, password)
+
       const response = await fetch(
         "https://rag-be-python.vercel.app/register",
         {
@@ -46,7 +49,7 @@ export const userRegister = () => {
           body: JSON.stringify({
             username: username,
             email: email,
-            hashed_password: password,
+            password: password,
           }),
         }
       );
