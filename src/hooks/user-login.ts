@@ -37,8 +37,6 @@ export const userLogin = () => {
 export const userRegister = () => {
   return useMutation({
     mutationFn: async ({ username, email, password }: UserRegister) => {
-      console.log('createUser', username, email, password)
-
       const response = await fetch(
         "https://rag-be-python.vercel.app/register",
         {
