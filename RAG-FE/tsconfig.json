@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "target": "ES2020",            // Limit to a specific ECMAScript version
+    "module": "ESNext",
+    "lib": ["ES2020"],
+    "noEmit": true,                // Don’t emit JS (useful for type-checking only)
+    "strict": true,                // Enables all strict type-checking options
+    "noImplicitAny": true,
+    "allowJs": false,              // Don't allow JavaScript files
+    "esModuleInterop": true
+  }
+}

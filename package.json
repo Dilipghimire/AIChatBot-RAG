@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
+    "@tanstack/react-query": "^5.76.2",
+    "ai": "^4.3.16",
+    "react-hook-form": "^7.56.4",
+    "react-router-dom": "^7.6.0",
+    "sass": "^1.89.0",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.89.0"
+  }
+}
