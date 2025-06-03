@@ -1,3 +1,57 @@
+# 🎬 React Frontend for Video Q&A Chatbot
+
+This is the **frontend** for an AI-powered full-stack web app. It allows users to:
+
+- 🔐 **Login/Register**
+- 🎥 **Search and chat about YouTube videos**
+- 🤖 **Ask questions about video summaries**
+- 🚪 **Logout securely**
+- 🔄 Uses **React Query** for efficient API fetching
+- ⚡ Built with **Vite** for fast development
+
+---
+
+## ⚙️ Tech Stack
+
+- ⚛️ **React** (with TypeScript)
+- ⚡ **Vite** (dev/build tool)
+- 🔄 **React Query** for data fetching/caching
+- 🧠 **Chatbot UI** for video Q&A
+- 🎨 **SASS** for styling
+- 🪝 **React Hook Form + Yup** for forms & validation
+- 🌐 **React Router v7**
+
+---
+
+## 📁 Folder Structure
+
+── src/
+│ ├── components/ # Reusable components (Chat, Form, Navbar, etc.)
+│ ├── pages/ # Login, Register, Chat, Landing
+│ ├── hooks/ # Custom React Query + auth hooks
+│ ├── styles/ # SASS styling
+│ ├── App.tsx
+│ └── main.tsx
+├── public/
+├── package.json
+├── vite.config.ts
+└── README.md
+
+
+---
+
+## 🚀 Getting Started
+
+### 1. Install dependencies
+
+```bash
+cd frontend
+npm install
+
+npm run dev
+
+App will run at: http://localhost:5173
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
