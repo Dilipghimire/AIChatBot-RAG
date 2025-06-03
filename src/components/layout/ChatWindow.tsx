@@ -1,18 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./chat-window.scss";
-import { useTranscript } from "../../hooks/use-transcript";
 import { userRetrieveAnswer } from "../../hooks/use-retrieve-answer";
-import { useParams } from "react-router-dom";
 
 const ChatWindow: React.FC = () => {
   const [messages, setMessages] = useState<{ sender: string; text: string }[]>(
     []
   );
-  const { videoId } = useParams<{ videoId: string }>();
+  // const { videoId } = useParams<{ videoId: string }>();
   const [userQuestion, setUserQuestion] = useState("");
   const [isLoadingState, setIsLoadingState] = useState(false);
 
-  const { data: videoTranscript } = useTranscript(videoId || "");
+  // this is will be used later
+  // const { data: videoTranscript } = useTranscript(videoId || "");
   const { mutateAsync } = userRetrieveAnswer();
   
 

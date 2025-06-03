@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./login.scss";
 import { userLogin } from "../hooks/user-login";
-import Loading from "../components/ui/loading";
+import Loading from "../../src/components/ui/Loading"
 
 const Login = () => {
   const [username, setUsername] = useState("");

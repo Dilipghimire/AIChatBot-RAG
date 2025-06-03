@@ -5,6 +5,7 @@
     { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
+    "jsx": "react-jsx",
     "incremental": true,
     "tsBuildInfoFile": "./.tsbuildinfo",
     "target": "ES2020",            // Limit to a specific ECMAScript version

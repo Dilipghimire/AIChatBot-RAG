@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import "./register.scss";
 import { userRegister } from "../hooks/user-login";
 import * as Yup from "yup";
-import Loading from "../components/ui/loading";
+import Loading from "../../src/components/ui/Loading"
 
 const validationSchema = Yup.object({
   username: Yup.string()
